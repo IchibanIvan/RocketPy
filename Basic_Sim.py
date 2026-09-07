@@ -101,9 +101,6 @@ rocket.add_parachute(
     name = "Main",
     cd_s = 0.4922,
     trigger = "apogee",
-    sampling_rate=100,
-    lag=1.0,
-    noise=(0, 0, 0),
 )
 
 
