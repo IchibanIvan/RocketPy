@@ -1,6 +1,6 @@
 from math import pi
 
-from rocketpy import Environment, SolidMotor, Rocket, Flight
+from rocketpy import Environment, GenericMotor, Rocket, Flight
 
 # all values should be in SI units (m, kg, s, N, Pa, rad, K, etc.)
 # edit - Preferences - units to change the default units
@@ -15,10 +15,6 @@ env.set_atmospheric_model(type = "standard_atmosphere")
 
 print("Environment created")
 
-motor = SolidMotor(
-    thrust_source = ""
-)
-
 rocket = Rocket(
     radius = 0.157/2.0,
     mass = 22.6, # dry mass
@@ -30,11 +26,24 @@ rocket = Rocket(
     # dummy motor
     # Longitudinal & rotational moment of inertia
 
-    power_off_drag = 0.2, # DRAG CURVE OR NO?
-    power_on_drag = 0.5,
+    power_off_drag = "Tutorial/power_off_drag.csv",
+    power_on_drag = "Tutorial/power_on_drag.csv",
+    # Values in drag curve before burnout for power_on_drag
+    # then burnout to apogee for power_off_drag
 
     center_of_mass_without_motor = 1.44,
     coordinate_system_orientation = "nose_to_tail",
+)
+
+motor = GenericMotor.load_from_eng_file(
+    "Tutorial/AeroTech_N4000W-PS.eng",
+)
+
+motor.info()
+
+rocket.add_motor(
+    motor = motor,
+    position = 3.47, # nozzle exit from the tip of the rocket
 )
 
 rocket.add_nose(
