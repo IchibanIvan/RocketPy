@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 from rocketpy import Function
 
-# all values should be in SI units (m, kg, s, N, Pa, rad, K, etc.)
+# all values should be in SI units
 # edit - Preferences - units to change the default units
 
 env = Environment(
@@ -37,6 +37,7 @@ env.set_atmospheric_model(
 )
 
 print("Environment created")
+# env.plots.atmospheric_model()
 
 rocket = Rocket(
     radius = 0.157/2.0,
@@ -59,7 +60,7 @@ rocket = Rocket(
 )
 
 motor = GenericMotor.load_from_eng_file(
-    "Tutorial/AeroTech_N4000W-PS.eng",
+    "Tutorial/Motor.eng",
 )
 
 # motor.info()
@@ -130,7 +131,7 @@ rocket.add_parachute(
     name = "Drogue",
     cd_s = Cd_drogue * pi * r_drogue**2,
     trigger = "apogee",
-    sampling_rate=100,
+    sampling_rate = 100,
     lag=0.01,
 )
 
@@ -152,6 +153,15 @@ flight = Flight(
 print(f"Apogee: {flight.apogee:.1f} m")
 print(f"Time to apogee: {flight.apogee_time:.2f} s")
 print(f"Landing time: {flight.t_final:.2f} s")
+
+# Get the final simulated time
+landing_time = flight.solution[-1][0]
+
+# Calculate the coordinates at that time
+landing_latitude = float(flight.latitude(landing_time))
+landing_longitude = float(flight.longitude(landing_time))
+
+print(f"Landing coordinates: {landing_latitude:.7f}, {landing_longitude:.7f}")
 
 flight.plots.trajectory_3d()
 flight.z.plot()
