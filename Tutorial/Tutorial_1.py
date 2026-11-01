@@ -7,7 +7,7 @@ import pandas as pd
 from rocketpy import Function
 
 # all values should be in SI units
-# edit - Preferences - units to change the default units
+# edit - Preferences - units to change the default units in OpenRocket
 
 env = Environment(
     latitude = 28.61,
@@ -149,6 +149,8 @@ flight = Flight(
     # 180° = South
     # 270° = West
 )
+
+rocket.draw()
 
 print(f"Apogee: {flight.apogee:.1f} m")
 print(f"Time to apogee: {flight.apogee_time:.2f} s")
