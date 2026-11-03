@@ -58,12 +58,31 @@ motor = SolidMotor(
 
 print("Motor created")
 
+
+drag_data = pd.read_csv(
+    "Basic sim/drag_curve.csv",
+    comment = "#", # Ignore OpenRockets comment/header lines
+    header = None,
+    names = ["mach", "cd"],
+)
+
+
+# Sort the rows from lowest Mach number to highest
+drag_data = drag_data.sort_values("mach")
+
+# Create a file with the sorted and cleaned up drag curve
+drag_data.to_csv(
+    "Basic Sim/drag_curve_clean.csv",
+    index=False,
+    header=False
+)
+
 rocket = Rocket(
     radius = 0.0508,
     mass = 1.497,
     inertia = (0.193465243, 0.193515502, 0.000334175),
-    power_off_drag = 0.75,
-    power_on_drag = 0.65,
+    power_off_drag="Basic Sim/drag_curve_clean.csv",
+    power_on_drag="Basic Sim/drag_curve_clean.csv",
     center_of_mass_without_motor = 0.52986,
     coordinate_system_orientation = "tail_to_nose",
 )

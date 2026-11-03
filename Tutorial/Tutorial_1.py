@@ -2,18 +2,42 @@ from math import pi
 
 from rocketpy import Environment, GenericMotor, Rocket, Flight
 
-# all values should be in SI units (m, kg, s, N, Pa, rad, K, etc.)
-# edit - Preferences - units to change the default units
+import numpy as np
+import pandas as pd
+from rocketpy import Function
+
+# all values should be in SI units
+# edit - Preferences - units to change the default units in OpenRocket
 
 env = Environment(
-    latitude=43.6532,
-    longitude=-79.3832,
-    elevation=76
+    latitude = 28.61,
+    longitude = -80.6,
+    elevation = 0,
 )
 
-env.set_atmospheric_model(type = "standard_atmosphere")
+# env.set_atmospheric_model(type = "standard_atmosphere")
+
+weather_data = pd.read_csv("Tutorial/Wind.csv")
+alt = weather_data["altitude"].values
+speed = weather_data["speed"].values
+direction = weather_data["direction"].values
+
+direction_rad = np.radians(direction)
+
+wind_u = -speed * np.sin(direction_rad)
+wind_v = -speed * np.cos(direction_rad)
+
+wind_u_func = Function(np.column_stack((alt, wind_u)))
+wind_v_func = Function(np.column_stack((alt, wind_v)))
+
+env.set_atmospheric_model(
+    type = "custom_atmosphere",
+    wind_u = wind_u_func,
+    wind_v = wind_v_func,
+)
 
 print("Environment created")
+# env.plots.atmospheric_model()
 
 rocket = Rocket(
     radius = 0.157/2.0,
@@ -36,10 +60,10 @@ rocket = Rocket(
 )
 
 motor = GenericMotor.load_from_eng_file(
-    "Tutorial/AeroTech_N4000W-PS.eng",
+    "Tutorial/Motor.eng",
 )
 
-motor.info()
+# motor.info()
 
 rocket.add_motor(
     motor = motor,
@@ -54,10 +78,9 @@ rocket.add_nose(
 
 fin_points = [
     (0.0, 0.0),            # P0: forward root
-    (0.127, 0.140),           # P1: leading-edge bend
-    (0.254, 0.140),         # P2: upper leading corner
-    (0.305, 0.000),          # P3: upper trailing corner
-    (0.254, 0.000),          # P4: rear root
+    (0.127, 0.140),        # P1: leading-edge bend
+    (0.254, 0.140),        # P2: upper leading corner
+    (0.305, 0.000),        # P3: upper trailing corner
 ]
 
 rocket.add_free_form_fins(
@@ -97,6 +120,8 @@ rocket.add_parachute(
     name = "Main",
     cd_s = Cd_main * pi * r_main**2, # Cd * pi * r^2
     trigger = 457,
+    sampling_rate=100,
+    lag=0.01,
 )
 
 Cd_drogue = 0.8
@@ -105,7 +130,9 @@ r_drogue = 0.762 / 2.0
 rocket.add_parachute(
     name = "Drogue",
     cd_s = Cd_drogue * pi * r_drogue**2,
-    trigger = 457,
+    trigger = "apogee",
+    sampling_rate = 100,
+    lag=0.01,
 )
 
 flight = Flight(
@@ -123,11 +150,24 @@ flight = Flight(
     # 270° = West
 )
 
+rocket.draw()
+
 print(f"Apogee: {flight.apogee:.1f} m")
-print(f"Max speed: {flight.max_speed:.1f} m/s")
 print(f"Time to apogee: {flight.apogee_time:.2f} s")
+print(f"Landing time: {flight.t_final:.2f} s")
+
+# Get the final simulated time
+landing_time = flight.solution[-1][0]
+
+# Calculate the coordinates at that time
+landing_latitude = float(flight.latitude(landing_time))
+landing_longitude = float(flight.longitude(landing_time))
+
+print(f"Landing coordinates: {landing_latitude:.7f}, {landing_longitude:.7f}")
 
 flight.plots.trajectory_3d()
+flight.z.plot()
+flight.speed.plot() 
 flight.plots.linear_kinematics_data()
 flight.plots.angular_kinematics_data()
 flight.plots.flight_path_angle_data()
@@ -135,4 +175,5 @@ flight.plots.aerodynamic_forces()
 flight.plots.stability_and_control_data()
 flight.plots.energy_data()
 
-flight.plots.all()
+
+# flight.all_info()
