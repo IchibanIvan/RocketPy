@@ -73,6 +73,21 @@ Maximum Mach:              0.848
 
 
 ==================================================
+Simulation: HRRR 6 hours before
+==================================================
+Landing Coordinates:       42.700187, -77.187496
+Apogee Coordinates:        42.709698, -77.191329
+Apogee Elevation ASL (m):  2532.33
+Apogee Time (s):           20.39
+Landing Time (s):          177.68
+Descent Time (s):          157.29
+Impact Velocity (m/s):     -13.73
+Maximum Velocity (m/s):    278.17
+Maximum Mach:              0.848
+==================================================
+
+
+==================================================
 Simulation: HRRR test 1 hr before
 ==================================================
 Landing Coordinates:       42.700354, -77.187498
@@ -88,16 +103,125 @@ Maximum Mach:              0.847
 
 
 ==================================================
-Simulation: HRRR 6 hours before
+Simulation: HRRR immediately before
 ==================================================
-Landing Coordinates:       42.700187, -77.187496
-Apogee Coordinates:        42.709698, -77.191329
-Apogee Elevation ASL (m):  2532.33
-Apogee Time (s):           20.39
-Landing Time (s):          177.68
-Descent Time (s):          157.29
-Impact Velocity (m/s):     -13.73
-Maximum Velocity (m/s):    278.17
+Landing Coordinates:       42.700429, -77.186615
+Apogee Coordinates:        42.709328, -77.192058
+Apogee Elevation ASL (m):  2540.32
+Apogee Time (s):           20.43
+Landing Time (s):          178.28
+Descent Time (s):          157.85
+Impact Velocity (m/s):     -13.74
+Maximum Velocity (m/s):    278.23
 Maximum Mach:              0.848
+==================================================
+
+
+==================================================
+Simulation: Radiosonde 2026-11-13 1200 UTC - Radiosonde immediately after
+==================================================
+Landing Coordinates:       42.696227, -77.191422
+Apogee Coordinates:        42.707706, -77.190429
+Apogee Elevation ASL (m):  2510.76
+Apogee Time (s):           20.52
+Landing Time (s):          179.99
+Descent Time (s):          159.47
+Impact Velocity (m/s):     -13.69
+Maximum Velocity (m/s):    278.35
+Maximum Mach:              0.847
+==================================================
+
+
+==================================================
+Simulation: Radiosonde 2026-11-13 1200 UTC - Radiosonde after
+==================================================
+Landing Coordinates:       42.696227, -77.191422
+Apogee Coordinates:        42.707706, -77.190429
+Apogee Elevation ASL (m):  2510.76
+Apogee Time (s):           20.52
+Landing Time (s):          179.99
+Descent Time (s):          159.47
+Impact Velocity (m/s):     -13.69
+Maximum Velocity (m/s):    278.35
+Maximum Mach:              0.847
+==================================================
+
+
+==================================================
+Simulation: ERA5 2026-11-06 19UTC - ERA5 immediately after
+==================================================
+ERA5 Observation (UTC):     2026-11-06 19:00
+Launch Time (UTC):          2026-11-13T19:00
+Landing Coordinates:       42.710897, -77.183034
+Apogee Coordinates:        42.706607, -77.191617
+Apogee Elevation ASL (m):  2642.52
+Apogee Time (s):           20.90
+Landing Time (s):          182.26
+Descent Time (s):          161.36
+Impact Velocity (m/s):     -14.04
+Maximum Velocity (m/s):    280.22
+Maximum Mach:              0.829
+==================================================
+
+
+==================================================
+Simulation: Radiosonde 2026-11-13 1200 UTC - Radiosonde 1 hr after
+==================================================
+Landing Coordinates:       42.696227, -77.191422
+Apogee Coordinates:        42.707706, -77.190429
+Apogee Elevation ASL (m):  2510.76
+Apogee Time (s):           20.52
+Landing Time (s):          179.99
+Descent Time (s):          159.47
+Impact Velocity (m/s):     -13.69
+Maximum Velocity (m/s):    278.35
+Maximum Mach:              0.847
+==================================================
+
+
+==================================================
+Simulation: Radiosonde 2026-11-14 1200 UTC - Radiosonde 6 hrs after
+==================================================
+Landing Coordinates:       42.697148, -77.182604
+Apogee Coordinates:        42.707997, -77.190802
+Apogee Elevation ASL (m):  2511.82
+Apogee Time (s):           20.51
+Landing Time (s):          180.08
+Descent Time (s):          159.57
+Impact Velocity (m/s):     -13.67
+Maximum Velocity (m/s):    278.34
+Maximum Mach:              0.844
+==================================================
+
+
+==================================================
+Simulation: Radiosonde 2026-11-14 1200 UTC - Radiosonde 1 day after
+==================================================
+Landing Coordinates:       42.697148, -77.182604
+Apogee Coordinates:        42.707997, -77.190802
+Apogee Elevation ASL (m):  2511.82
+Apogee Time (s):           20.51
+Landing Time (s):          180.08
+Descent Time (s):          159.57
+Impact Velocity (m/s):     -13.67
+Maximum Velocity (m/s):    278.34
+Maximum Mach:              0.844
+==================================================
+
+
+==================================================
+Simulation: ERA5 2026-11-10 19UTC - ERA5 example
+==================================================
+ERA5 Observation (UTC):     2026-11-10 19:00
+Launch Time (UTC):          2026-11-13T19:00
+Landing Coordinates:       42.700352, -77.164121
+Apogee Coordinates:        42.706352, -77.194045
+Apogee Elevation ASL (m):  2609.09
+Apogee Time (s):           20.73
+Landing Time (s):          180.28
+Descent Time (s):          159.56
+Impact Velocity (m/s):     -14.04
+Maximum Velocity (m/s):    279.68
+Maximum Mach:              0.832
 ==================================================
 

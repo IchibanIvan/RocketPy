@@ -72,8 +72,8 @@ for level in levels:
         f"geopotential_height_{level}hPa",
     ]
 
-url = "https://single-runs-api.open-meteo.com/v1/forecast"
-#url = "https://api.open-meteo.com/v1/forecast"
+#url = "https://single-runs-api.open-meteo.com/v1/forecast"
+url = "https://api.open-meteo.com/v1/forecast"
 
 session = requests.Session()
 retries = Retry(
@@ -92,7 +92,7 @@ def get_weather(requested_variables):
             "latitude": lat,
             "longitude": long,
             "elevation": elev,
-            "run": run,
+            #"run": run,
             "models": "ncep_hrrr_conus",
             "forecast_days": 3,
             "timezone": "UTC",
